@@ -1,0 +1,32 @@
+from aiogram import Router, Bot
+from aiogram.filters import Command
+from aiogram.types import Message
+
+import config
+from keyboards import keyboard_main_menu
+
+main_router = Router()
+
+
+@main_router.message(Command('start'))
+async def start_command(message: Message ):
+    await message.answer(
+        text=f'Привет, {message.from_user.full_name}!\nЯ готов к работе!',
+        reply_markup=keyboard_main_menu(),
+    )
+
+@main_router.message(Command('random'))
+async def random_command(message):
+    print(message.from_user.id)
+
+
+@main_router.message()
+async def all_messages(message: Message, bot: Bot):
+    msg_text = f'В чате {message.chat.id} пользователь {message.from_user.full_name} написал: \n{message.text}'
+    await bot.send_message(
+        chat_id=config.ADMIN_ID,
+        text=msg_text,
+    )
+    # print(msg_text)
+
+
