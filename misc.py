@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def taimestamp():
+def timestamp():
     current_time = datetime.now()
     return current_time.strftime("%H:%S, %d.%m.%Y")
 
@@ -11,9 +11,9 @@ def print_message(message:str):
 
 
 def on_start():
-    msg = f'Bot started at {taimestamp()}'
+    msg = f'Bot started at {timestamp()}'
     print_message(msg)
 
 def on_shutdown():
-    msg = f'Bot is down at {taimestamp()}'
+    msg = f'Bot is down at {timestamp()}'
     print_message(msg)
