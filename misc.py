@@ -2,12 +2,12 @@ from datetime import datetime
 
 def timestamp():
     current_time = datetime.now()
-    return current_time.strftime("%H:%S, %d.%m.%Y")
+    return current_time.strftime("%H:%M:%S, %d.%m.%Y")
 
 def print_message(message:str):
     print('\n ┌' + '-'*(len(message) +2) + '┐')
     print(f' | {message} |')
-    print(' └' + '-'*(len(message) +2) + '┘')
+    print(' └' + '-'*(len(message) +2) + '┘\n')
 
 
 def on_start():

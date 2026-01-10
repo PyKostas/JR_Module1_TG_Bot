@@ -4,16 +4,19 @@ from aiogram.types import Message
 
 import config
 from keyboards import keyboard_main_menu
+from utils import FileManager
+from utils.enum_path import Path
 
 main_router = Router()
 
 
 @main_router.message(Command('start'))
-async def start_command(message: Message ):
+async def start_command(message: Message):
     await message.answer(
-        text=f'Привет, {message.from_user.full_name}!\nЯ готов к работе!',
+        text=FileManager.read_txt(Path.MESSAGES, 'main'),
         reply_markup=keyboard_main_menu(),
     )
+
 
 @main_router.message(Command('random'))
 async def random_command(message):
@@ -28,5 +31,3 @@ async def all_messages(message: Message, bot: Bot):
         text=msg_text,
     )
     # print(msg_text)
-
-

@@ -32,13 +32,12 @@ class GPTService:
         )
         return gpt_client
 
-    async def request(self, message: GPTMessage, bot:Bot) -> str:
+    async def request(self, message_list: GPTMessage, bot:Bot) -> str:
         try:
             response = await self._client.chat.completions.create(
-                message = message.list.message_list,
-                model = self._model
+                messages = message_list.message_list,
+                model = self._model,
             )
-
             return response.choices[0].message.content
         except Exception as e:
             await bot.send_message(
