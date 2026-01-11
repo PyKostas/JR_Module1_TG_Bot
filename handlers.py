@@ -1,27 +1,9 @@
 from aiogram import Router, Bot
-from aiogram.filters import Command
 from aiogram.types import Message
 
 import config
-from keyboards import keyboard_main_menu
-from utils import FileManager
-from utils.enum_path import Path
 
 main_router = Router()
-
-
-@main_router.message(Command('start'))
-async def start_command(message: Message):
-    await message.answer(
-        text=FileManager.read_txt(Path.MESSAGES, 'main'),
-        reply_markup=keyboard_main_menu(),
-    )
-
-
-@main_router.message(Command('random'))
-async def random_command(message):
-    print(message.from_user.id)
-
 
 @main_router.message()
 async def all_messages(message: Message, bot: Bot):
